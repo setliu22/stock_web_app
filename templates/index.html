@@ -1,0 +1,43 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Performance Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Performance Tracker</h1>
+        
+        <h2>Top 10 Performing Stocks (5-Day Increase)</h2>
+        <table>
+            <tr>
+                <th>Ticker</th>
+                <th>5-Day Increase (%)</th>
+            </tr>
+            {% for row in top_10.iterrows() %}
+            <tr>
+                <td><a href="{{ url_for('news', ticker=row[1]['Ticker']) }}">{{ row[1]['Ticker'] }}</a></td>
+                <td>{{ row[1]['5-Day Increase (%)'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Bottom 10 Performing Stocks (5-Day Decrease)</h2>
+        <table>
+            <tr>
+                <th>Ticker</th>
+                <th>5-Day Increase (%)</th>
+            </tr>
+            {% for row in bottom_10.iterrows() %}
+            <tr>
+                <td><a href="{{ url_for('news', ticker=row[1]['Ticker']) }}">{{ row[1]['Ticker'] }}</a></td>
+                <td>{{ row[1]['5-Day Increase (%)'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

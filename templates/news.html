@@ -1,0 +1,29 @@
+<!-- templates/news.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News for {{ ticker }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Recent News for {{ ticker }}</h1>
+        
+        {% if news_articles %}
+            <ul>
+                {% for article in news_articles %}
+                <li>
+                    <a href="{{ article['link'] }}" target="_blank">{{ article['title'] }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No recent news found.</p>
+        {% endif %}
+        
+        <a href="{{ url_for('index') }}">Back to Stock Performance</a>
+    </div>
+</body>
+</html>
